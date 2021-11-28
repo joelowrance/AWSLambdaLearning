@@ -1,0 +1,26 @@
+org: joelowrance
+app: auto-pocket
+service: autopocket
+
+frameworkVersion: "2 || 3"
+
+provider:
+  name: aws
+  runtime: python3.8
+  memorySize: 128
+  lambdaHashingVersion: 20201221
+
+plugins:
+  - serverless-python-requirements
+functions:
+  # rateHandler:
+  #   handler: handler.run
+  #   events:
+  #     # Invoke Lambda function every minute
+  #     - schedule: rate(1 minute)
+  cronHandler:
+    handler: handler.run
+    timeout: 45
+    events:
+      # Invoke Lambda function every 2nd minute from Mon-Fri
+      - schedule: cron(0 0/4 * * ? *)
