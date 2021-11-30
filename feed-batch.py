@@ -35,7 +35,7 @@ def process_feed(news_feed):
     return articles_to_post
 
 
-def run(event, context):
+def update_feeds(event, context):
     # current_time = datetime.datetime.now().time()
     # name = context.function_name
     # logger.info("Your cron function " + name + " ran at " + str(current_time))
@@ -48,7 +48,7 @@ def run(event, context):
 
     # look at each feed for new articles and send them to pocket.
     for tracked_feed in feeds:
-        logger.info('running feed' + tracked_feed["name"])
+        logger.info('running feed - ' + tracked_feed["name"])
         to_add = process_feed(tracked_feed)
         for a in to_add:
             pocket.post(a.link)
