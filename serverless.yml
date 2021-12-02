@@ -19,7 +19,7 @@ functions:
   #     # Invoke Lambda function every minute
   #     - schedule: rate(1 minute)
   cronHandler:
-    handler: feed-batch.update-feeds
+    handler: feed-batch.update_feeds
     timeout: 45
     events:
       # Invoke Lambda function every 2nd minute from Mon-Fri
@@ -30,4 +30,11 @@ functions:
       - http:
           path: get
           method: get
+          cors: true
+  update:
+    handler: api.update
+    events:
+      - http:
+          path: update
+          method: post
           cors: true

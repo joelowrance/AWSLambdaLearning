@@ -12,4 +12,10 @@ def get(event, context):
     }
 
 
-print(get(123, 123))
+def update(event, context):
+    data = json.loads(event["body"])
+    feed.update(data)
+    return {
+        "statusCode": 200,
+        "body": json.dumps(data)
+    }
